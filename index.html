@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harmony Sport - Спорт в гармонии с собой</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #f5d3e2;
+            --secondary-color: #d3e5f5;
+            --accent-color: #e3d3f5;
+            --text-color: #5a5a7a;
+            --light-color: #fff9fc;
+            --dark-color: #7a7a9a;
+            --success-color: #a8e6cf;
+            --disabled-color: #e0e0e0;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Quicksand', sans-serif;
+            color: var(--text-color);
+            background-color: var(--light-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 1.5rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+        
+        header.scrolled {
+            padding: 1rem 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            margin-right: 10px;
+            font-size: 2.2rem;
+            color: var(--accent-color);
+        }
+        
+        /* Navigation */
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+            position: relative;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+        
+        nav ul li a i {
+            margin-right: 5px;
+        }
+        
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 10rem 0 5rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-color);
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin: 0 auto 2.5rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: var(--dark-color);
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: none;
+            cursor: pointer;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--dark-color);
+            margin-left: 1rem;
+        }
+        
+        .btn-disabled {
+            background: var(--disabled-color);
+            color: #999;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+        
+        .btn-disabled:hover {
+            transform: none;
+            box-shadow: none;
+        }
+        
+        /* Sections */
+        section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            margin: 1rem auto;
+        }
+        
+        /* About */
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .about-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            height: 500px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 5rem;
+        }
+        
+        .about-content h2 {
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-content p {
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        /* Classes */
+        .classes {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        .class-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .class-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+        
+        .class-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .class-img {
+            height: 200px;
+            background-color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+        }
+        
+        .class-content {
+            padding: 1.5rem;
+        }
+        
+        .class-meta {
+            display: flex;
+            justify-content: space-between;
+            margin: 1rem 0;
+            color: var(--dark-color);
+            font-size: 0.9rem;
+        }
+        
+        .disabled-note {
+            background-color: #fff9e6;
+            border-left: 4px solid #ffcc00;
+            padding: 0.8rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .disabled-note i {
+            margin-right: 0.5rem;
+            color: #ff9900;
+        }
+        
+        /* Trainers */
+        .trainers {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+        }
+        
+        .trainer-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .trainer-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            text-align: center;
+        }
+        
+        .trainer-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .trainer-img {
+            height: 250px;
+            background-color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 5rem;
+        }
+        
+        .trainer-content {
+            padding: 1.5rem;
+        }
+        
+        .trainer-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .trainer-social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            background-color: var(--light-color);
+            border-radius: 50%;
+            color: var(--dark-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .trainer-social a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+        
+        /* Pricing */
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .pricing-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .pricing-card.popular {
+            transform: scale(1.05);
+            border: 2px solid var(--primary-color);
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .pricing-card.popular:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+        
+        .popular-badge {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 0.3rem 1.5rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin: 1rem 0;
+        }
+        
+        .price span {
+            font-size: 1rem;
+            color: var(--text-color);
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin: 2rem 0;
+        }
+        
+        .pricing-features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .testimonials::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4c8f8' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+        
+        .testimonial-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: "";
+            font-size: 5rem;
+            color: var(--primary-color);
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            opacity: 0.3;
+            font-family: Georgia, serif;
+        }
+        
+        .testimonial-text {
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--secondary-color);
+            margin-right: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-color);
+            font-weight: bold;
+        }
+        
+        /* Contact */
+        .contact {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        
+        .contact-form {
+            background-color: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            font-family: 'Quicksand', sans-serif;
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(245, 211, 226, 0.3);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--dark-color), #5a5a7a);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .footer-column h3::after {
+            content: "";
+            display: block;
+            width: 40px;
+            height: 2px;
+            background: var(--primary-color);
+            margin-top: 0.5rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-color);
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-link:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .about, .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image {
+                order: -1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo {
+                margin-bottom: 1rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 1.5rem;
+                right: 1rem;
+            }
+            
+            .mobile-menu {
+                display: none;
+                width: 100%;
+            }
+            
+            .mobile-menu.active {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            section {
+                padding: 3rem 0;
+            }
+            
+            .btn-secondary {
+                margin-left: 0;
+                margin-top: 1rem;
+                display: block;
+            }
+            
+            .pricing-card.popular {
+                transform: scale(1);
+            }
+            
+            .pricing-card.popular:hover {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <span class="logo-icon">⚡</span>
+                    Harmony Sport
+                </a>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <nav class="mobile-menu">
+                    <ul>
+                        <li><a href="#home"><i class="fas fa-home"></i> Главная</a></li>
+                        <li><a href="#about"><i class="fas fa-info-circle"></i> О нас</a></li>
+                        <li><a href="#classes"><i class="fas fa-dumbbell"></i> Занятия</a></li>
+                        <li><a href="#pricing"><i class="fas fa-tag"></i> Цены</a></li>
+                        <li><a href="#contact"><i class="fas fa-envelope"></i> Контакты</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Спорт в гармонии с собой</h1>
+                <p>Откройте для себя новый подход к фитнесу, где сила встречается с изяществом, а выносливость с грацией. Мы создали пространство, где каждый может найти свой путь к здоровью и гармонии.</p>
+                <div>
+                    <a href="#contact" class="btn">Посетить наш зал</a>
+                    <a href="#about" class="btn btn-secondary">Узнать больше</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">О нашем центре</h2>
+            <div class="about">
+                <div class="about-content">
+                    <h2>Harmony Sport - это больше, чем просто фитнес-клуб</h2>
+                    <p>Мы верим, что физическая активность должна приносить радость и гармонию, а не быть изнурительной обязанностью. Наш подход сочетает в себе лучшие методики тренировок с вниманием к ментальному здоровью.</p>
+                    <p>Основанный в 2018 году, наш центр быстро стал любимым местом для тех, кто ищет баланс между активным образом жизни и внутренним спокойствием. Мы создали уникальную атмосферу, где каждый чувствует себя комфортно и мотивированно.</p>
+                    <p>Наша команда профессиональных тренеров и инструкторов поможет вам достичь ваших целей, учитывая ваши индивидуальные особенности и предпочтения.</p>
+                    <a href="#contact" class="btn">Посетить наш зал</a>
+                </div>
+                <div class="about-image">
+                    <i class="fas fa-heartbeat"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features">
+        <div class="container">
+            <h2 class="section-title">Почему выбирают нас</h2>
+            <div class="features">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <h3>Гармония тела и духа</h3>
+                    <p>Наши тренировки направлены не только на физическое развитие, но и на ментальное равновесие. Мы учим слушать свое тело и находить внутренний баланс.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Поддержка сообщества</h3>
+                    <p>Присоединяйтесь к нашему дружному сообществу единомышленников, где каждый найдет поддержку и вдохновение для достижения своих целей.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Экологичный подход</h3>
+                    <p>Мы заботимся о природе, используя экологичные материалы и практики в нашей работе. Наш центр работает на возобновляемой энергии.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="classes" id="classes">
+        <div class="container">
+            <h2 class="section-title">Наши занятия</h2>
+            <div class="class-cards">
+                <div class="class-card fade-in">
+                    <div class="class-img">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <div class="class-content">
+                        <h3>Аква-фитнес</h3>
+                        <p>Тренировки в воде для мягкого воздействия на суставы и эффективного укрепления мышц.</p>
+                        <div class="class-meta">
+                            <span><i class="far fa-clock"></i> 60 мин</span>
+                            <span><i class="fas fa-user-friends"></i> Группа до 12 чел</span>
+                        </div>
+                        <div class="disabled-note">
+                            <i class="fas fa-exclamation-circle"></i>
+                            Запись доступна только в нашем зале
+                        </div>
+                        <button class="btn btn-disabled" disabled>Записаться</button>
+                    </div>
+                </div>
+                <div class="class-card fade-in">
+                    <div class="class-img">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <div class="class-content">
+                        <h3>Йога при луне</h3>
+                        <p>Вечерние занятия йогой, которые помогут расслабиться и восстановить энергию после дня.</p>
+                        <div class="class-meta">
+                            <span><i class="far fa-clock"></i> 75 мин</span>
+                            <span><i class="fas fa-user-friends"></i> Группа до 15 чел</span>
+                        </div>
+                        <div class="disabled-note">
+                            <i class="fas fa-exclamation-circle"></i>
+                            Запись доступна только в нашем зале
+                        </div>
+                        <button class="btn btn-disabled" disabled>Записаться</button>
+                    </div>
+                </div>
+                <div class="class-card fade-in">
+                    <div class="class-img">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <div class="class-content">
+                        <h3>Функциональный тренинг</h3>
+                        <p>Улучшите свою повседневную активность с помощью упражнений, имитирующих реальные движения.</p>
+                        <div class="class-meta">
+                            <span><i class="far fa-clock"></i> 55 мин</span>
+                            <span><i class="fas fa-user-friends"></i> Группа до 10 чел</span>
+                        </div>
+                        <div class="disabled-note">
+                            <i class="fas fa-exclamation-circle"></i>
+                            Запись доступна только в нашем зале
+                        </div>
+                        <button class="btn btn-disabled" disabled>Записаться</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing">
+        <div class="container">
+            <h2 class="section-title">Наши тарифы</h2>
+            <div class="pricing-cards">
+                <div class="pricing-card fade-in">
+                    <h3>Начальный</h3>
+                    <div class="price">1 200 <span>руб/мес</span></div>
+                    <ul class="pricing-features">
+                        <li>4 групповых занятия в месяц</li>
+                        <li>Фитнес-зона</li>
+                        <li>Душ и раздевалки</li>
+                        <li>Бесплатная вода</li>
+                    </ul>
+                    <div class="disabled-note">
+                        <i class="fas fa-exclamation-circle"></i>
+                        Покупка доступна только в зале
+                    </div>
+                    <button class="btn btn-disabled" disabled>Купить</button>
+                </div>
+                <div class="pricing-card popular fade-in">
+                    <div class="popular-badge">Популярный</div>
+                    <h3>Оптимальный</h3>
+                    <div class="price">2 500 <span>руб/мес</span></div>
+                    <ul class="pricing-features">
+                        <li>12 групповых занятий в месяц</li>
+                        <li>Фитнес-зона</li>
+                        <li>Сауна</li>
+                        <li>Скидка на персональные тренировки</li>
+                        <li>Бесплатные полотенца</li>
+                    </ul>
+                    <div class="disabled-note">
+                        <i class="fas fa-exclamation-circle"></i>
+                        Покупка доступна только в зале
+                    </div>
+                    <button class="btn btn-disabled" disabled>Купить</button>
+                </div>
+                <div class="pricing-card fade-in">
+                    <h3>Премиум</h3>
+                    <div class="price">4 800 <span>руб/мес</span></div>
+                    <ul class="pricing-features">
+                        <li>Неограниченные групповые занятия</li>
+                        <li>Все зоны клуба</li>
+                        <li>2 персональные тренировки в месяц</li>
+                        <li>SPA-услуги со скидкой 20%</li>
+                        <li>Заморозка абонемента на 14 дней</li>
+                    </ul>
+                    <div class="disabled-note">
+                        <i class="fas fa-exclamation-circle"></i>
+                        Покупка доступна только в зале
+                    </div>
+                    <button class="btn btn-disabled" disabled>Купить</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">Отзывы наших клиентов</h2>
+            <div class="testimonial-cards">
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-text">
+                        "Я никогда не думала, что спорт может быть таким приятным и гармоничным. Благодаря Harmony Sport я нашла баланс между физической активностью и ментальным спокойствием. Особенно люблю вечерние занятия йогой - они помогают снять стресс после рабочего дня."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">АН</div>
+                        <div>
+                            <h4>Анна Н.</h4>
+                            <p>Клиентка 2 года</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-text">
+                        "После травмы колена я думал, что активный спорт не для меня. Но здесь мне подобрали щадящие тренировки, которые помогли восстановиться без боли и дискомфорта. Тренеры - настоящие профессионалы, которые умеют работать с любыми особенностями здоровья."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">МК</div>
+                        <div>
+                            <h4>Максим К.</h4>
+                            <p>Клиент 1 год</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-text">
+                        "Атмосфера в студии невероятная! Приходя сюда, я забываю о стрессе и проблемах. Тренеры внимательны к каждому клиенту и всегда готовы помочь. За 3 года занятий я не только улучшила физическую форму, но и нашла здесь настоящих друзей."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">ЕС</div>
+                        <div>
+                            <h4>Елена С.</h4>
+                            <p>Клиентка 3 года</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Свяжитесь с нами</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h3>Наш адрес</h3>
+                            <p>г. Москва, ул. Спортивная, 15</p>
+                            <p>БЦ "Гармония", 3 этаж</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div>
+                            <h3>Телефон</h3>
+                            <p>+7 (495) 123-45-67</p>
+                            <p>+7 (925) 765-43-21</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h3>Email</h3>
+                            <p>info@harmonysport.ru</p>
+                            <p>booking@harmonysport.ru</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <h3>Часы работы</h3>
+                            <p>Пн-Пт: 7:00 - 22:00</p>
+                            <p>Сб-Вс: 8:00 - 20:00</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <div>
+                            <h3>Важная информация</h3>
+                            <p>Запись на занятия и покупка абонементов доступны только в нашем зале.</p>
+                            <p>Приходите к нам, и мы поможем подобрать оптимальный вариант!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Ваше имя</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Телефон</label>
+                            <input type="tel" id="phone" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Сообщение</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Отправить сообщение</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Harmony Sport</h3>
+                    <p>Спорт, который приносит радость и гармонию в вашу жизнь. Присоединяйтесь к нашему сообществу и откройте для себя новый подход к фитнесу.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Быстрые ссылки</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Главная</a></li>
+                        <li><a href="#about">О нас</a></li>
+                        <li><a href="#classes">Занятия</a></li>
+                        <li><a href="#pricing">Цены</a></li>
+                        <li><a href="#testimonials">Отзывы</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Наши занятия</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Аква-фитнес</a></li>
+                        <li><a href="#">Йога при луне</a></li>
+                        <li><a href="#">Функциональный тренинг</a></li>
+                        <li><a href="#">Пилатес</a></li>
+                        <li><a href="#">Стретчинг</a></li>
+                        <li><a href="#">Медитация</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Контакты</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> г. Москва, ул. Спортивная, 15</li>
+                        <li><i class="fas fa-phone-alt"></i> +7 (495) 123-45-67</li>
+                        <li><i class="fas fa-envelope"></i> info@harmonysport.ru</li>
+                        <li><i class="fas fa-info-circle"></i> Запись и покупка абонементов только в зале</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Harmony Sport. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Мобильное меню
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.mobile-menu').classList.toggle('active');
+        });
+        
+        // Плавная прокрутка
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Закрываем мобильное меню после клика
+                    document.querySelector('.mobile-menu').classList.remove('active');
+                }
+            });
+        });
+        
+        // Изменение хедера при скролле
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Анимация появления элементов при скролле
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeInObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        fadeElements.forEach(element => {
+            fadeInObserver.observe(element);
+        });
+        
+        // Обработка формы
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Спасибо за ваше сообщение! Мы свяжемся с вами в ближайшее время.');
+            this.reset();
+        });
+        
+        // Обработка кликов на заблокированные кнопки
+        document.querySelectorAll('.btn-disabled').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Запись на занятия и покупка абонементов доступны только в нашем зале. Пожалуйста, посетите нас по адресу: г. Москва, ул. Спортивная, 15');
+            });
+        });
+    </script>
+</body>
+</html>
